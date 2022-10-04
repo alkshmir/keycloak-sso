@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+  webapp:
+    image: keycloak-adapter:latest
+    ports:
+      - 8088:8080
+
+    environment:
+      - AUTH_SERVER_URL=http://keycloak:8080/auth
+      - CLIENT_SECRET=yTrsNmpFvdnYIc0pyTdNc736E16hGMge
+
+networks:
+  default:
+    name: sample-local-nw 
+    external: true
