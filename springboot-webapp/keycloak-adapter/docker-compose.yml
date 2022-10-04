@@ -9,6 +9,8 @@ services:
 
     environment:
       - AUTH_SERVER_URL=http://keycloak:8080/auth
+      - REALM_NAME=demo-realm
+      - CLIENT_ID=demo-app
       - CLIENT_SECRET=yTrsNmpFvdnYIc0pyTdNc736E16hGMge
 
 networks:
