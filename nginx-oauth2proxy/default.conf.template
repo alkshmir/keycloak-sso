@@ -1,0 +1,15 @@
+server {
+    listen ${NGINX_PORT};
+    server_name localhost;
+    
+    proxy_set_header Host               $host:${LB_PORT};
+    proxy_set_header X-Real-IP          $remote_addr;
+    proxy_set_header X-Forwarded-Host   $host;
+    proxy_set_header X-Forwarded-Server $host;
+    proxy_set_header X-Forwarede-For    $proxy_add_x_forwarded_for;
+
+
+    location /flask-server/ {
+        proxy_pass http://flask-server:5000;
+    }
+}

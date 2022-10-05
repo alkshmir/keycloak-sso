@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - 2080:80
+    environment:
+      - NGINX_PORT=80
+      - LB_PORT=2080
+    volumes:
+      - ./default.conf.template:/etc/nginx/templates/default.conf.template
+    networks:
+      - frontend
+      - backend
+
+  flask-server:
+    build: flask-server/.
+    ports:
+      - 5000:5000
+    environment:
+      - BASE_URL=/flask-server
+    networks:
+      - backend
+
+
+networks:
+  frontend:
+    name: sample-local-nw
+    external: true
+  backend:
+    name: reverse-proxy-nw
