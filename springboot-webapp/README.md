@@ -12,7 +12,7 @@ Before running adapter, run [Keycloak](../../keycloak/README.md) and configure r
 1. build and run
    ```
    # this may take minutes
-   docker build -t keycloak-adapter
+   docker build -t keycloak-adapter .
    # run
    docker compose up -d
    ```
