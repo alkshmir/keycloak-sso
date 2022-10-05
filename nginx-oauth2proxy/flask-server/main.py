@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, request, jsonify
 from werkzeug.routing import Rule
 
 app = Flask(__name__)
@@ -28,9 +28,25 @@ if os.getenv("BASE_URL"):
 else:
     print("No BASE_URL is specified.")
 
+app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True # format json output
+
 @app.route('/hello')
 def hello():
     return 'hello from flask!'
+
+@app.route('/header')
+def header():
+    return jsonify(dict(request.headers))
+
+@app.route('/userinfo')
+def userinfo():
+    username = request.headers.get("X-Forwarded-Preferred-Username")
+    groups = request.headers.get("X-Forwarded-Groups")
+    return "hello {}, you are in {} groups".format(username, groups)
+
+@app.route('/probe')
+def public():
+    return "probe response."
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
