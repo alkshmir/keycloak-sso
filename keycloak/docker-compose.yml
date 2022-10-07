@@ -8,7 +8,10 @@ services:
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=password
-      - PROXY_ADDRESS_FORWARDING=true 
+      - PROXY_ADDRESS_FORWARDING=true
+      - KEYCLOAK_IMPORT=/tmp/realm-export.json
+    volumes:
+      - ./realm-export.json:/tmp/realm-export.json
 
 networks:
   default:

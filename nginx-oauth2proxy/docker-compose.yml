@@ -21,7 +21,7 @@ services:
     environment:
       OAUTH2_PROXY_PROVIDER: keycloak-oidc
       OAUTH2_PROXY_CLIENT_ID: oauth2proxy-demo
-      OAUTH2_PROXY_CLIENT_SECRET: DI0nvTZRrXUEb7ssC9pJwt0IBXx2x03y # TODO: update client secret
+      OAUTH2_PROXY_CLIENT_SECRET: ${CLIENT_SECRET:?err} # TODO: update client secret on .env
       OAUTH2_PROXY_REDIRECT_URL: http://localhost:8000
       OAUTH2_PROXY_OIDC_ISSUER_URL: http://keycloak:8080/auth/realms/demo-realm
       OAUTH2_PROXY_INSECURE_OIDC_SKIP_ISSUER_VERIFICATION: true # allow oidc issuer domain name difference between internal nw and external nw
